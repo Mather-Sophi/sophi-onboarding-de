@@ -1,0 +1,120 @@
+*********************************************************
+The RECORD Vector read from the Input Filename------
+-----"What Florida teaches us about gun violence
+-----2013-02-28T03:10:02Z
+-----da55d1f4-b4e1-4793-b2ef-280d77c7eebf
+-----Set(Gary Smith, Weiwei Li)
+-----List(in-house, wire)
+-----12.5
+-----72.3
+-----560 seconds"
+-----"Canada becomes too cold in Winter and its fun
+-----2017-04-28T03:10:02Z
+-----da55d1f4-b4e1-4793-b2ef-280d77c7eeDD
+-----Set("Naresh Dhamija", "Christopher")
+-----List(in-house, wire)
+-----13.9
+-----72.2
+-----560 seconds"
+-----"Federal government to consult public on banning handguns
+-----2018-02-29T06:14:05Z
+-----3f0ea549-a27a-4cfa-b4a4-f06c5cbb8231
+-----Set("DANIEL LEBLANC")
+-----List(in-house)
+-----22.6
+-----2000.7
+-----17.34 minutes	"
+-----"An apple a Day keeps the doctor Away
+-----2019-02-29T06:14:05Z
+-----3f0ea549-a27a-4cfa-b4a4-f06c5cbb8DBE
+-----Set(WILLIAM PANE, YOGI KONDE)
+-----List(in-house)
+-----4.6
+-----1999.7
+-----35.33 minutes"
+*********************************************************
+Size of Record Vector is 4
+
+All the Unique Authors are  Set("Christopher", "Naresh Dhamija", "DANIEL LEBLANC", Weiwei Li, WILLIAM PANE, Gary Smith, YOGI KONDE)
+
+---Convert all the records into JSON---
+{
+  "ArticleName": "\"What Florida teaches us about gun violence",
+  "DateSubmitted": "2013-02-28T03:10:02Z",
+  "ArticleID": "da55d1f4-b4e1-4793-b2ef-280d77c7eebf",
+  "AuthorName": {},
+  "Freelancer": {},
+  "PopularityIndex": 12.5,
+  "ReadershipIndex": 72.3,
+  "TotalEngagementTime": "560 seconds\""
+}
+{
+  "ArticleName": "\"Canada becomes too cold in Winter and its fun",
+  "DateSubmitted": "2017-04-28T03:10:02Z",
+  "ArticleID": "da55d1f4-b4e1-4793-b2ef-280d77c7eeDD",
+  "AuthorName": {},
+  "Freelancer": {},
+  "PopularityIndex": 13.9,
+  "ReadershipIndex": 72.2,
+  "TotalEngagementTime": "560 seconds\""
+}
+{
+  "ArticleName": "\"Federal government to consult public on banning handguns",
+  "DateSubmitted": "2018-02-29T06:14:05Z",
+  "ArticleID": "3f0ea549-a27a-4cfa-b4a4-f06c5cbb8231",
+  "AuthorName": {},
+  "Freelancer": {},
+  "PopularityIndex": 22.6,
+  "ReadershipIndex": 2000.7,
+  "TotalEngagementTime": "17.34 minutes\t\""
+}
+{
+  "ArticleName": "\"An apple a Day keeps the doctor Away",
+  "DateSubmitted": "2019-02-29T06:14:05Z",
+  "ArticleID": "3f0ea549-a27a-4cfa-b4a4-f06c5cbb8DBE",
+  "AuthorName": {},
+  "Freelancer": {},
+  "PopularityIndex": 4.6,
+  "ReadershipIndex": 1999.7,
+  "TotalEngagementTime": "35.33 minutes\""
+}
+{
+  "ArticleName": "\"Federal government to consult public on banning handguns",
+  "DateSubmitted": "2018-02-29T06:14:05Z",
+  "ArticleID": "3f0ea549-a27a-4cfa-b4a4-f06c5cbb8231",
+  "AuthorName": {},
+  "Freelancer": {},
+  "PopularityIndex": 22.6,
+  "ReadershipIndex": 2000.7,
+  "TotalEngagementTime": "17.34 minutes\t\""
+}
+{
+  "ArticleName": "\"Canada becomes too cold in Winter and its fun",
+  "DateSubmitted": "2017-04-28T03:10:02Z",
+  "ArticleID": "da55d1f4-b4e1-4793-b2ef-280d77c7eeDD",
+  "AuthorName": {},
+  "Freelancer": {},
+  "PopularityIndex": 13.9,
+  "ReadershipIndex": 72.2,
+  "TotalEngagementTime": "560 seconds\""
+}
+{
+  "ArticleName": "\"What Florida teaches us about gun violence",
+  "DateSubmitted": "2013-02-28T03:10:02Z",
+  "ArticleID": "da55d1f4-b4e1-4793-b2ef-280d77c7eebf",
+  "AuthorName": {},
+  "Freelancer": {},
+  "PopularityIndex": 12.5,
+  "ReadershipIndex": 72.3,
+  "TotalEngagementTime": "560 seconds\""
+}
+{
+  "ArticleName": "\"An apple a Day keeps the doctor Away",
+  "DateSubmitted": "2019-02-29T06:14:05Z",
+  "ArticleID": "3f0ea549-a27a-4cfa-b4a4-f06c5cbb8DBE",
+  "AuthorName": {},
+  "Freelancer": {},
+  "PopularityIndex": 4.6,
+  "ReadershipIndex": 1999.7,
+  "TotalEngagementTime": "35.33 minutes\""
+}
