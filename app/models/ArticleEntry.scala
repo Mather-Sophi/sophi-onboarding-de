@@ -1,7 +1,13 @@
 package models
+
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import play.api.libs.json._
+
+
+import scala.concurrent.duration.Duration
+import scala.concurrent.duration.DurationInt
+import scala.util.Try
 
 
 /**
@@ -16,11 +22,11 @@ case class ArticleEntry(
                        freelancer: List[String],
                        popularityIndex: Double,
                        readershipIndex: Double,
-                       totalEngagementTime: Int,
+                       totalEngagementTime: Duration,
                        competitionScore: Double
                        ) extends Comparable[ArticleEntry] {
 
-  private val dateSubmittedFormatStr= "yyyy-MM-ddTHH:mm:ssZ"
+  private val dateSubmittedFormatStr= "yyyy-MM-dd'T'HH:mm:ss'Z'"
 
   /**
     * This method concatenate competitionScore and dateSubmitted into a string for sorting
@@ -61,7 +67,7 @@ case class ArticleEntry(
 object ArticleEntry {
 
 
-  private val dateSubmittedFormatStr= "yyyy-MM-ddTHH:mm:ssZ"
+  private val dateSubmittedFormatStr= "yyyy-MM-dd'T'HH:mm:ss'Z'"
 
   /**
     * This method is help method to convert a String to dateSubmitted DateTime
@@ -72,7 +78,7 @@ object ArticleEntry {
   def toDateSubmitted(dateTimeText: String) : DateTime =
   {
     val fmt = DateTimeFormat.forPattern(dateSubmittedFormatStr)
-    val dateSubmittedDT = fmt.parseDateTime(dateTimeText)
+    val dateSubmittedDT = Try(fmt.parseDateTime(dateTimeText)).getOrElse(fmt.parseDateTime("1900-01-01T00:00:00Z"))
     dateSubmittedDT
   }
 
@@ -100,6 +106,30 @@ object ArticleEntry {
     freelancerList
   }
 
+  /**
+    * This method is help method to convert a String to popularityIndex
+    * @param popularityIndexText: String
+    * @return popularity: Double
+    */
+
+  def toPopularityIndex(popularityIndexText: String) : Double =
+  {
+    val popularityIndex = Try(popularityIndexText.toDouble).getOrElse(0.0)
+    popularityIndex
+  }
+
+
+  /**
+    * This method is help method to convert a String to readershipIndex
+    * @param readershipIndexText: String
+    * @return popularity: Double
+    */
+
+  def toReadershipIndex(readershipIndexText: String) : Double =
+  {
+    val readershipIndex = Try(readershipIndexText.toDouble).getOrElse(0.0)
+    readershipIndex
+  }
 
   /**
     * This method is help method to convert a String to totalEngagenmentTime duration
@@ -107,30 +137,37 @@ object ArticleEntry {
     * @return the int stands totalEngagementTime in seconds
     */
 
-  def toTotalEngagementTime(totalEngagementTimeText: String) : Int =
+  def toTotalEngagementTime(totalEngagementTimeText: String) : Duration =
   {
-    val pattern = "([0-9])\s*([A-Za-z]+)".r
-    val pattern(theTime, theUnit) = totalEngagementTimeText
-    val totalEngagementTime:Int = theUnit match{
-      case "seconds" => theTime.toInt
-      case "minutes" => theTime.toInt * 60
-      case _ => 0
+    val pat = """([0-9]+)\s*([A-Za-z]+)""".r
+    val totalEngagementTime = totalEngagementTimeText match {
+      case pat( theTime, "second") => theTime.toInt.second
+      case pat( theTime, "seconds") => theTime.toInt.seconds
+      case pat (theTime, "minute") => theTime.toInt.minute
+      case pat (theTime, "minutes") => theTime.toInt.minutes
+      case pat (theTime, "hour") => theTime.toInt.hour
+      case pat (theTime, "hours") => theTime.toInt.hours
+      case pat (theTime, "day") => theTime.toInt.day
+      case pat (theTime, "days") => theTime.toInt.days
+      case _  => 0.seconds
     }
     totalEngagementTime
   }
 
+
+
   /**
     * This method is help method to convert a String to totalEngagenmentTime duration
-    * @param totalEngagementTime: Int
+    * @param totalEngagementTime: Duration
     * @param popularityIndex: Double
     * @param readershipIndex: Double
     * @return the int stands totalEngagementTime in seconds
     */
 
 
-  def toCompetitionScore(totalEngagementTime: Int, popularityIndex: Double, readershipIndex: Double) : Double =
+  def toCompetitionScore(totalEngagementTime: Duration, popularityIndex: Double, readershipIndex: Double) : Double =
   {
-    totalEngagementTime * (popularityIndex + readershipIndex)
+    totalEngagementTime.toSeconds * (popularityIndex + readershipIndex)
   }
 
   def apply(
@@ -147,8 +184,8 @@ object ArticleEntry {
       val dateSubmitted = toDateSubmitted(dateSubmitted0)
       val authorName = toAuthorsName(authorName0)
       val freelancer = toFreelancer(freelancer0)
-      val popularityIndex = popularityIndex0.toDouble
-      val readershipIndex = readershipIndex0.toDouble
+      val popularityIndex = toPopularityIndex(popularityIndex0)
+      val readershipIndex = toReadershipIndex(readershipIndex0)
       val totalEngagementTime = toTotalEngagementTime(totalEngagementTime0)
       val competitionScore = toCompetitionScore(totalEngagementTime, popularityIndex, readershipIndex )
 
@@ -164,11 +201,11 @@ object ArticleEntry {
       "Article Name" -> articleEntry.articleName,
       "Date Submitted" -> articleEntry.dateSubmittedToString,
       "Article ID" -> articleEntry.articleID,
-      "Author(s) name" ->  articleEntry.authorName.toString(),
-      "Freelancer/in-house/wire" -> articleEntry.freelancer.toString(),
+      "Author(s) name" ->  articleEntry.authorName.toSeq,
+      "Freelancer/in-house/wire" -> articleEntry.freelancer,
       "Popularity index" -> articleEntry.popularityIndex,
       "Readership index" -> articleEntry.readershipIndex,
-      "Total Engagement Time (Seconds)" -> articleEntry.totalEngagementTime,
+      "Total Engagement Time (Seconds)" -> articleEntry.totalEngagementTime.toSeconds,
       "Competition Score" -> articleEntry.competitionScore
     )
   }

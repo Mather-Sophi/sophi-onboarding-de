@@ -18,7 +18,8 @@ class Articles  @Inject()(cc: ControllerComponents) extends AbstractController(c
     */
   def getArticles = {
     Action { implicit request => {
-      val csvFilePath = routes.routes.Assets.versioned("resources/sample-input.csv")
+//      val csvFilePath = routes.Assets.versioned("resources/sample-input.csv").path()
+      val csvFilePath = "./public/resources/sample-input.csv"
       val json = ArticleReader.getArticlesJson(csvFilePath)
       Ok(json)
     }

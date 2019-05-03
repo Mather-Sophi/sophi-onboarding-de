@@ -1,10 +1,10 @@
 package models
 
 import java.io.FileReader
-import play.api.libs.json._
-
 
 import com.opencsv.CSVReader
+import play.api.libs.json._
+import scala.collection.JavaConverters._
 
 
 /**
@@ -21,7 +21,8 @@ object ArticleReader {
   def getList ( csvfilePath: String): List[Array[String]] = {
     val reader = new CSVReader(new FileReader(csvfilePath), ',', '\"', 1 )
     val records = reader.readAll()
-    records.asInstanceOf[List[Array[String]]]
+    asScalaBuffer(records).toList
+//    records.asInstanceOf[List[Array[String]]]
   }
 
   /**
@@ -38,13 +39,15 @@ object ArticleReader {
 
 
   /**
-    * This method takes a file path string to read a csv file and parse it and return a list of Array[String]
-    * @param articles the relative file path to csv file
+    * This method takes a list of ArticleEntry and a predicate function
+    * to sort the list according the logic provided by the function
+    * @param articles: List[ArticleEntry] the list needed to be sort
+    * @param pf: (ArticleEntry,ArticleEntry)=> Boolean
     * @return  List[ArticleEntry]
     */
 
-  def sortArticles ( articles: List[ArticleEntry]): List[ArticleEntry] = {
-    articles.sortWith( ((a1, a2) => a1.getCombineKey > a2.getCombineKey))
+  def sortArticles ( articles: List[ArticleEntry], pf: (ArticleEntry,ArticleEntry)=> Boolean) : List[ArticleEntry] = {
+    articles.sortWith( pf )
   }
 
   /**
@@ -59,7 +62,9 @@ object ArticleReader {
   def getArticlesJson ( csvPath: String)= {
 
       val articleList = getArticles(csvPath)
-      val sortedArticleList = sortArticles(articleList)
+      val sortedArticleList = sortArticles(articleList,
+          (a1: ArticleEntry, a2: ArticleEntry) =>
+          (a1.competitionScore > a2.competitionScore || a1.dateSubmittedToString > a2.dateSubmittedToString ))
       val articleJsonList = sortedArticleList.map( a => Json.toJson(a)).toSeq
       val articlesJson = Json.obj(
         "Articles" -> articleJsonList
