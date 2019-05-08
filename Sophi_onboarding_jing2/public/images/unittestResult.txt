@@ -1,0 +1,34 @@
+[info] ArticleEntryTest
+[info]
+[info] the first ArticleEntry should
+[info]   + build first ArticleEntry using apply method
+[info] the second ArticleEntry should
+[info]   + build second ArticleEntry using apply method
+[info]
+[info]
+[info] Total for specification ArticleEntryTest
+[info] Finished in 497 ms
+[info] 2 examples, 0 failure, 0 error
+[info]
+[info] ArticleReaderSpec
+[info]
+[info] test read the csv file sorted then output as Json format should
+[info]   + test getArticlesJson
+[info]
+[info]
+[info] Total for specification ArticleReaderSpec
+[info] Finished in 342 ms
+[info] 1 example, 0 failure, 0 error
+[info]
+[info] ArticlesSpec
+[info]
+[info] Articles controller should
+[info]   + getArticles
+[info]
+[info]
+[info] Total for specification ArticlesSpec
+[info] Finished in 2 seconds, 366 ms
+[info] 1 example, 0 failure, 0 error
+[info]
+[info] Passed: Total 4, Failed 0, Errors 0, Passed 4
+[success] Total time: 19 s, completed 8-May-2019 10:30:34 AM
