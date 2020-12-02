@@ -34,12 +34,12 @@ Your project should read the input file and present the data in one REST endpoin
 
 * Competition Score: Total Engagement Time in seconds * (Popularity index + Readership index)
 * The person that runs your code (i.e. a platform engineer), only knows Docker. He attaches a Docker volume to your container to provide the input. He reads your Markdown documents to build and run your image.
-* Please use Scala 2.12.6 and sbt version of your choice.
+* If you are to use Scala, please use Scala 2.12.6 and sbt version of your choice. If you are to use Java, use Java 14, If you are to use Python use Python 3.7
  
  
 ### Solution Submission:
 * Please fork this repository as a _private_ repository. It is important to keep your solution in a _private_ repository to avoid other potential candidates accessing your solutions.
-* Whenever feeling comfortable, you can create a pull request in _your_ repository and add *szareiangm* as the reviewer.
+* Whenever feeling comfortable, you can create a pull request in _your_ repository and add *robertdecaire* as the reviewer.
 * When you submit your pull request, *robertdecaire* will add some other team members. The team will review your code. We try to keep our comments limited.
 * You have the choice of addressing the comments and squashing your commits into one. The way you handle the comments is important to us.
  
