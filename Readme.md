@@ -39,7 +39,7 @@ Your project should read the input file and present the data in one REST endpoin
  
 ### Solution Submission:
 * Please fork this repository as a _private_ repository. It is important to keep your solution in a _private_ repository to avoid other potential candidates accessing your solutions.
-* Whenever feeling comfortable, you can create a pull request in _your_ repository and add *robertdecaire* as the reviewer.
+* Whenever feeling comfortable, you can create a pull request in _your_ repository and add *robertdecaire* and *bsayed-tgam* as the reviewers.
 * When you submit your pull request, *robertdecaire* will add some other team members. The team will review your code. We try to keep our comments limited.
 * You have the choice of addressing the comments and squashing your commits into one. The way you handle the comments is important to us.
  
