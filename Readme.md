@@ -22,7 +22,7 @@ Your project should read the input file and present the data in one REST endpoin
 * The goal of your code is not be short, but is the coding style to be expressive and comprehensive enough in a functional way.
 * Software design patterns, always and forever.
 * Scaladocs are mandatory. Please have them in your code. You don’t need to generate the actual docs.
-* You’re given a CSV (git splitted by comma) fie that might have unexpected values in _any_ of the fields These are the columns:
+* You’re given a CSV file that might have unexpected values in _any_ of the fields These are the columns:
   * Article Name (String)
   * Date Submitted (Timestamp)
   * Article ID (uuid4)
